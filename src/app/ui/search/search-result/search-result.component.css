@@ -1,0 +1,62 @@
+.results-container {
+  margin-bottom: 20px;
+}
+
+.flight-card {
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+}
+
+.flight-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.airline-info {
+  flex-grow: 1;
+}
+
+.airline-logo {
+  height: 50px; /* Adjust the height as needed */
+}
+
+.flight-info {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.departure, .arrival {
+  width: 45%;
+}
+
+.segment-card {
+  margin-top: 10px;
+  padding: 10px;
+}
+
+.segment-details {
+  margin-top: 10px;
+}
+
+.segment-location h4 {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+  color: #3f51b5;
+}
+
+.flight-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.price {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #3f51b5;
+}

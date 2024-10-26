@@ -1,0 +1,34 @@
+.traveler-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  mat-form-field {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .button-container {
+    text-align: center;
+  }
+  
+  mat-checkbox {
+    margin-top: 20px;
+  }
+  
+  button {
+    width: 100%;
+  }
+
+  @media (max-width: 600px) {
+    .traveler-form {
+      padding: 10px;
+    }
+    
+    mat-form-field {
+      width: 100%;
+    }
+  }
+  

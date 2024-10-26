@@ -1,0 +1,90 @@
+<div *ngFor="let resultGroup of detailedResult?.Response?.Results" class="results-container">
+  <div class="flight-card" *ngFor="let resultValue of resultGroup">
+    <div class="flight-details">
+
+      <!-- Flight Header -->
+      <div class="flight-header">
+        <div class="airline-info">
+          <p><strong>Airline Code:</strong>{{ resultValue.Segments[0][0].Airline.AirlineName }} {{ resultValue.AirlineCode }}</p>          
+        </div>
+        <img class="airline-logo" 
+             [src]="'assets/airlines/' + resultValue.Segments[0][0].Airline.AirlineName + '.png'"  
+             alt="{{ resultValue.Segments[0][0].Airline.AirlineName }} Logo" />
+      </div>
+
+      <!-- Flight Info -->
+      <div class="flight-info">
+        <div class="departure">
+          <p><strong>Departure:</strong> {{ detailedResult?.Response?.Origin }} {{ resultValue.Segments[0][0].Origin.Airport.CityName }}</p>
+          <!-- <p>{{ resultValue.Segments[0][0].Origin.DepTime | date: 'shortTime' }}</p> -->
+          <p>{{ resultValue.Segments[0][0].Origin.Airport.AirportName }} Terminal {{ resultValue.Segments[0][0].Origin.Airport.Terminal }}</p>
+          <p><strong>Origin Departure Time:</strong> {{  resultValue.Segments[0][0].Origin.DepTime | date: 'shortTime' }}</p>
+        </div>
+        
+        <!-- <div *ngFor="let stop of resultValue.Segments">
+          <mat-card class="segment-card">
+            <mat-card-header>
+              <mat-card-title>Stops</mat-card-title>
+            </mat-card-header>
+            <mat-divider></mat-divider>
+            <div *ngFor="let seg of stop" class="segment-details">
+              <p><strong>Duration:</strong> {{ seg.Duration }}</p>
+              <mat-divider></mat-divider>
+            </div>
+          </mat-card>
+        </div> -->
+
+        <div class="arrival" *ngFor="let arrivaDestination of resultValue.Segments[0]">
+          <p><strong>Arrival:</strong> {{ detailedResult?.Response?.Destination }} {{ arrivaDestination.Destination.Airport.CityName }} </p>
+          <!-- <p>{{ arrivaDestination.Destination.ArrTime| date: 'shortTime' }}</p> -->
+          <p>{{ arrivaDestination.Destination.Airport.AirportName }}  Terminal {{ arrivaDestination.Destination.Airport.Terminal }}</p>
+          <!-- <p><strong>Duration:</strong> {{ arrivaDestination.Duration }}</p> -->
+          <p><strong>Airline Name:</strong> {{ arrivaDestination.Airline.AirlineName }} {{ arrivaDestination.Airline.AirlineCode }}</p>
+          
+          <!-- <p><strong>Destination Airport:</strong> {{ arrivaDestination.Destination.Airport.AirportName }}</p>
+          <p><strong>Destination Terminal:</strong> {{ arrivaDestination.Destination.Airport.Terminal }}</p> -->
+          <p><strong>Destination Arrival Time:</strong> {{ arrivaDestination.Destination.ArrTime | date: 'shortTime' }}</p>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <!-- Fare Breakdown -->
+      <div class="fare-info" *ngFor="let fare of resultValue.FareBreakdown">
+        <p><strong>Base Fare:</strong> {{ fare.BaseFare | currency: fare.Currency }}</p>
+        <p><strong>Published Fare:</strong> {{ resultValue.Fare.PublishedFare | currency: fare.Currency }}</p>
+        <p><strong>Convenience Charge:</strong> {{ resultValue.Fare.ChargeBU.ConvenienceCharge | currency: fare.Currency }}</p>
+        <!-- <p><strong>Other Charge:</strong> {{ resultValue.Fare.ChargeBU.OtherCharge | currency: fare.Currency }}</p>
+        <p><strong>TBOMarkUp:</strong> {{ resultValue.Fare.ChargeBU.TBOMarkUp | currency: fare.Currency }}</p>  -->
+        <p><strong>Tax:</strong> {{ fare.Tax | currency: fare.Currency }}</p>
+
+        <div *ngFor="let taxBreakUp of fare.TaxBreakUp">
+          <p>{{ taxBreakUp.key }}: {{ taxBreakUp.value | currency: fare.Currency }}</p>
+        </div>
+
+        <!-- <p><strong>Additional Transaction Fee Offered:</strong> {{ fare.AdditionalTxnFeeOfrd | currency: fare.Currency }}</p>
+        <p><strong>Additional Transaction Fee Published:</strong> {{ fare.AdditionalTxnFeePub | currency: fare.Currency }}</p> -->
+      </div>
+
+      <!-- Segments Info -->
+      <div class="segment-info" *ngFor="let segment of resultValue.Segments">
+        <mat-card class="segment-card">
+          <mat-card-header>
+            <mat-card-title>Segment Info</mat-card-title>
+          </mat-card-header>
+          <mat-divider></mat-divider>
+          <div class="segment-details" *ngFor="let segmentValue of segment">
+            <p><strong>Baggage:</strong> {{ segmentValue.Baggage }}</p>
+            <p><strong>Refundable:</strong> {{ resultValue.IsRefundable ? 'Yes' : 'No' }}</p>
+            <!-- <p><strong>Stop Over:</strong> {{ segmentValue.StopOver ? 'Yes' : 'No' }}</p> -->
+          </div>
+        </mat-card>
+      </div>
+
+      <!-- Footer with Price and Book Now -->
+      <div class="flight-footer">
+        <span class="price">{{resultValue.Fare.PublishedFare | currency }}</span>
+        <button mat-raised-button color="primary" (click)="bookFlight(resultValue)">Book Now</button>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+  </div>
+</div>

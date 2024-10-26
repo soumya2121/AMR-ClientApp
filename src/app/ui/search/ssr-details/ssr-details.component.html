@@ -1,0 +1,113 @@
+<!-- <pre>{{ fareRuleResult?.Response| json }}</pre> -->
+<div *ngIf="fareRuleResult?.Response?.FareRules; else loading"> 
+<div *ngFor="let result of fareRuleResult?.Response?.FareRules" class="fare-rule-card">
+            
+            <div class="fare-rule-section">
+            <label>Airline:</label>
+            <span>{{ result.Airline }}</span>
+            </div>
+        
+            <div class="fare-rule-section">
+            <label>Origin:</label>
+            <span>{{ result.Origin }}</span>
+            </div>
+        
+            <div class="fare-rule-section">
+            <label>Destination:</label>
+            <span>{{ result.Destination }}</span>
+            </div>
+        
+            <!-- <div class="fare-rule-section">
+            <label>Fare Basis Code:</label>
+            <span>{{ result.FareBasisCode }}</span>
+            </div> -->
+        
+            <div class="fare-rule-section" *ngIf="result.FareRestriction">
+            <label>Fare Restriction:</label>
+            <span>{{ result.FareRestriction }}</span>
+            </div>
+        
+            <div class="fare-rule-section">
+            <label>Fare Rule Details:</label>
+            <ul>
+                <li *ngFor="let detail of result.FareRuleDetail">
+                {{ detail }}
+                </li>
+            </ul>
+            </div>
+ </div>
+</div>
+<!-- <pre>{{ fareQuoteResult?.Response| json }}</pre> -->
+
+<div *ngIf="fareQuoteResult?.Response?.Results; else loading">
+    <p>TraceID:{{fareQuoteResult?.Response?.TraceId}} </p>
+    <p>IsRefundable: {{fareQuoteResult?.Response?.Results?.IsRefundable}}</p>
+    <p>{{fareQuoteResult?.Response?.Results?.ResultIndex}}</p>    
+    <p>{{fareQuoteResult?.Response?.Results?.IsLCC}}</p>
+    <p>{{fareQuoteResult?.Response?.Results?.IsRefundable}}</p>
+    <!-- <div *ngFor="let results of fareQuoteResult?.Response?.Results?.FareBreakdown">
+        <p>{{results.BaseFare}}</p>
+        <p>{{results.Currency}}</p>
+    </div> -->
+    <div *ngFor="let fareBreakDown of fareQuoteResult?.Response?.Results?.FareBreakdown">
+        <p>{{fareBreakDown.PassengerType}} * {{fareBreakDown.PassengerCount}}</p>
+        <p>{{fareBreakDown.BaseFare}} {{fareBreakDown.Currency}}</p>
+        <p>Tax: {{fareBreakDown.Tax}}</p>
+    </div>
+    <div >
+        <p>Total: {{fareQuoteResult?.Response?.Results?.Fare?.Currency}}  {{fareQuoteResult?.Response?.Results?.Fare?.PublishedFare}}</p>
+
+    </div>
+    <div *ngFor="let results of segment">
+        
+        <div *ngFor="let result of results"> 
+            <p>{{result.Airline.AirlineCode}} {{result.Airline.AirlineName}} {{result.Airline.AirlineName}}</p>
+            <p>{{result.Origin.Airport.CityName}} {{result.Origin.Airport.AirportName}} {{result.Origin.DepTime}}</p>
+            <p>{{result.Destination.Airport.CityName}} {{result.Destination.Airport.AirportName}}  {{result.Destination.ArrTime}}</p>
+            <p>{{result.Baggage}}</p>
+            <p>{{result.CabinBaggage}}</p>
+            <p>{{result.Status}}</p>
+        </div>
+       
+    </div>
+</div>
+
+<pre>{{baggageOptions| json}}</pre>
+<ng-container *ngFor="let baggageGroup of baggageOptions; let i = index">
+    
+    <mat-form-field appearance="fill">
+      <mat-label>Select Baggage </mat-label>
+      <mat-select [(value)]="selectedBaggage">
+        <mat-option *ngFor="let baggage of baggageGroup" [value]="baggage">
+            <pre>{{baggage.weight| json}}</pre>
+          {{ baggage.weight }} - {{ baggage.currency }} {{ baggage.price }} 
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </ng-container>
+
+<div *ngIf="ssrDetails">
+    <mat-form-field>
+        <mat-label>Baggage</mat-label>
+        <mat-select  required>
+            <mat-option *ngFor="let baggages of ssrDetails?.Response?.Baggage"> 
+               <mat-option *ngFor="let item of baggages" [value]="item.price">
+                  {{item.price}}
+                </mat-option>
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    
+</div>
+<!-- <pre>{{ssrDetails?.Response?.Baggage| json}}</pre> -->
+<pre>{{ssrDetails?.Response| json}}</pre>
+<!-- <pre>{{ssrDetails| json}}</pre> -->
+ <ng-template #noData>
+    <p>No fare rule data available.</p>
+  </ng-template>
+
+<!-- Loading template -->
+<ng-template #loading>
+    <p>Loading fare rule details...</p>
+  </ng-template>
+  

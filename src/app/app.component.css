@@ -1,0 +1,40 @@
+.toolbar-title {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .spacer {
+    flex: 1 1 auto;
+  }
+  
+  /* nav a {
+    margin-right: 10px;
+    color: white;
+    text-decoration: none;
+  } */
+  
+  nav a.active {
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #1976d2; /* Dark blue background */
+    color: white; /* Ensure the text is white */
+  }
+  nav ul li a {
+  color: black; /* Change the text color to black or another dark color */
+  text-decoration: none;
+  font-size: 16px;
+  padding: 10px 15px;
+  transition: background-color 0.3s ease;
+}
+
+nav ul li a:hover, nav ul li a.active {
+  background-color: #1565c0; /* Darker background on hover/active */
+  color: white; /* White text when the background is dark */
+  border-radius: 5px;
+}

@@ -1,0 +1,61 @@
+<mat-card class="traveler-form">
+  <h2>Traveler Details</h2>
+
+  <!-- Full Name -->
+  <mat-form-field appearance="outline">
+    <mat-label>First Name</mat-label>
+    <input matInput placeholder="First name" [(ngModel)]="passengerDetails.pFristName" name="pFirstName">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Middle Name</mat-label>
+    <input matInput placeholder="Middle name(if any)" [(ngModel)]="passengerDetails.pMiddleName" name="pMiddleName">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Last Name</mat-label>
+    <input matInput placeholder="Last name" [(ngModel)]="passengerDetails.pLastName" name="pLastName">
+  </mat-form-field>
+  <!-- Date of Birth -->
+  <mat-form-field appearance="outline">
+    <!-- <mat-label>Date of Birth</mat-label>
+    <input matInput placeholder="DD/MM/YYYY" type="date" [(ngModel)]="passengerDetails.pDOB" name="pDOB"> -->
+    <mat-label>Date of Birth</mat-label>
+      <input matInput [matDatepicker]="picker0" placeholder="Choose a date" [(ngModel)]="passengerDetails.pDOB" name="pDOB">
+      <mat-datepicker-toggle matSuffix [for]="picker0"></mat-datepicker-toggle>
+      <mat-datepicker #picker0></mat-datepicker>
+  </mat-form-field>
+
+  <!-- Nationality -->
+  <mat-form-field appearance="outline">
+    <mat-label>Nationality</mat-label>
+    <mat-select [(ngModel)]="passengerDetails.pNationality" name="pNationality">
+      <mat-option value="UK">United Kingdom</mat-option>
+      <mat-option value="US">United States</mat-option>
+      <mat-option value="IN">India</mat-option>
+      <!-- Add more countries -->
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Passport Number -->
+  <mat-form-field appearance="outline">
+    <mat-label>Passport Number</mat-label>
+    <input matInput placeholder="Enter your passport number" [(ngModel)]="passengerDetails.pPassportNo" name="pPassportNo">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Passport Issued Date</mat-label>
+    <input matInput [matDatepicker]="picker1" placeholder="Choose a date" [(ngModel)]="passengerDetails.passportIssueDate" name="passportIssueDate">
+    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+     <mat-datepicker #picker1></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Passport Expiry Date</mat-label>
+    <input matInput [matDatepicker]="picker2" placeholder="Choose a date" [(ngModel)]="passengerDetails.passportExpiryDate" name="passportExpiryDate">
+    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+     <mat-datepicker #picker2></mat-datepicker>
+  </mat-form-field>
+  <!-- Submit Button -->
+  <div class="button-container">
+    <button mat-raised-button color="primary" (click)="submitPassengerDetails()">Submit</button>
+  </div>
+</mat-card>
+
+  

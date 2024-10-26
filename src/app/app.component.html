@@ -1,0 +1,30 @@
+
+<!-- <h1>AIRIDE</h1>
+<nav>
+  <ul>
+    <li><a routerLink="/home-component" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a></li>
+    <li><a routerLink="/login-component" routerLinkActive="active" ariaCurrentWhenActive="page">Login</a></li>
+    <li><a routerLink="/search-result-component" routerLinkActive="active" ariaCurrentWhenActive="page">Search</a></li>
+    <li><a routerLink="/result-component" routerLinkActive="actice" ariaCurrentWhenActive="page">Result</a></li>
+  </ul>
+</nav>
+The routed views render in the <router-outlet>
+<router-outlet></router-outlet> -->
+<mat-toolbar color="primary">
+  <span class="toolbar-title">AIRIDE</span>
+  
+  <span class="spacer"></span>
+  
+  <nav>
+    <a mat-button routerLink="/home-component" routerLinkActive="active">Home</a>
+    <a mat-button routerLink="/login-component" routerLinkActive="active">Login</a>
+    <a mat-button routerLink="/search-result-component" routerLinkActive="active">Search</a>
+    <a mat-button routerLink="/result-component" routerLinkActive="active">Result</a>
+    <a></a>
+  </nav>
+</mat-toolbar>
+
+<!-- The routed views render in the <router-outlet>-->
+<router-outlet></router-outlet>
+
+

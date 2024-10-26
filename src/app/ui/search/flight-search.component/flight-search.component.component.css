@@ -1,0 +1,44 @@
+.form-container {
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 800px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  background-color: white;
+}
+.form-row {
+  display: flex;
+  gap: 20px;
+}
+
+.form-field {
+  flex: 1;
+}
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+button {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+.submit-btn {
+  background-color: #1976d2;
+  color: white;
+  padding: 10px 30px;
+  font-size: 16px;
+  border-radius: 25px;
+  margin-top: 20px;
+}
+.mat-checkbox {
+  margin-right: 15px;
+}
+

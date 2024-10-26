@@ -1,0 +1,86 @@
+<form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+  <mat-card class="form-container">
+    <mat-card-title>Flight Search</mat-card-title>
+<mat-divider></mat-divider>
+<p></p>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Number of Adults</mat-label>
+        <input matInput formControlName="adultCount">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Number of Children</mat-label>
+        <input matInput formControlName="childCount">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Number of Infants</mat-label>
+        <input matInput formControlName="infantCount">
+      </mat-form-field>
+    </div>
+
+
+    <div class="form-row">
+      <!-- Direct Flight -->
+      <mat-checkbox formControlName="directFlight">Direct Flight</mat-checkbox>
+       <!-- One Stop Flight -->
+      <mat-checkbox formControlName="oneStopFlight">One Stop Flight</mat-checkbox>
+    </div>
+
+
+    <mat-form-field>
+      <mat-label>Journey Type</mat-label>
+        <mat-select  formControlName="journeyType" required>
+          <mat-option *ngFor="let item of journeyTypesData()" [value]="item">
+            {{item}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <!-- <mat-form-field appearance="fill">
+      <mat-label>Preferred Airlines</mat-label>
+      <input matInput formControlName="preferredAirlines" />
+    </mat-form-field> -->
+
+    <!-- Origin -->
+    <mat-form-field appearance="fill">
+      <mat-label>Origin</mat-label>
+      <input matInput formControlName ="origin" required />
+    </mat-form-field>
+
+    <!-- Destination -->
+    <mat-form-field appearance="fill">
+      <mat-label>Destination</mat-label>
+      <input matInput formControlName = "destination" required />
+    </mat-form-field>
+
+    <!-- Cabin Class -->
+    <mat-form-field appearance="fill">
+      <mat-label>Cabin Class</mat-label>
+      <mat-select formControlName="cabinClass" required>
+        <mat-option *ngFor="let key of cabinClassData()" [value]="key">
+          {{ key }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Preferred Departure -->
+    <mat-form-field appearance="fill">
+      <mat-label>Preferred Departure</mat-label>
+      <input matInput [matDatepicker]="picker1" formControlName="preferredDeparture" required />
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+
+    <!-- Preferred Arrival -->
+    <mat-form-field appearance="fill">
+      <mat-label>Preferred Arrival</mat-label>
+      <input matInput [matDatepicker]="picker2" formControlName="PreferredArrivalTim"/>
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" class="submit-btn">Submit</button>
+
+  </mat-card>
+</form>
